@@ -17,6 +17,33 @@ import requireUser from "../middleware/requireUser";
 
 const router = express.Router();
 
+/**
+ * @openapi
+ * '/user':
+ *  post:
+ *     tags:
+ *     - User
+ *     summary: Register a user
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *              $ref: '#/components/schemas/CreateUserInput'
+ *     responses:
+ *      201:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/CreateUserResponse'
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *      500:
+ *        description: Internal Server Error
+ */
 router.post("/user", validateResource(createUserSchema), createUserHandler);
 
 router.post(
